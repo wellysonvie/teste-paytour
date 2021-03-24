@@ -4,6 +4,7 @@ namespace Source\Controllers;
 
 use CoffeeCode\Uploader\File;
 use Exception;
+use Source\App\EmailController;
 use Source\Models\Resume;
 
 class ResumeController
@@ -30,8 +31,12 @@ class ResumeController
         $uploadPath = $this->uploadFile('resumeFile');
 
         if (!empty($uploadPath)) {
-            if ((new Resume())->add($name, $email, $phone, $role, $education, $observation, $uploadPath)) {
+
+            $resume = (new Resume())->add($name, $email, $phone, $role, $education, $observation, $uploadPath);
+
+            if (isset($resume)) {
                 alert('Seu currículo foi enviado com sucesso!', 'success');
+                $this->sendEmail($resume);
             } else {
                 alert('Erro ao enviar seus dados!', 'danger');
             }
@@ -46,8 +51,6 @@ class ResumeController
 
         $file = new File(__DIR__ . "/../../uploads", "files");
 
-        //dd($_FILES[$filename]['size']);
-
         if ($_FILES) {
             try {
                 $newFilename = time() . '_' . $_FILES[$filename]['name'];
@@ -58,5 +61,39 @@ class ResumeController
         }
 
         return $uploadPath;
+    }
+
+    private function sendEmail($resume)
+    {
+        $email = new EmailController();
+
+        $email->add(
+            "Confirmação de envio do seu currículo",
+            '<b>Seu currículo foi enviado com sucesso!</b>
+            <br><br>
+            <b>Nome:</b> ' . $resume->name . '<br>
+            <b>Email:</b> ' . $resume->email . '<br>
+            <b>Telefone:</b> ' . $resume->phone . '<br>
+            <b>Cargo desejado:</b> ' . $resume->role . '<br>
+            <b>Nível de escolaridade:</b> ' . $this->getEducationById($resume->education) . '<br>
+            <b>Observações:</b> ' . $resume->observation . '<br>',
+            $resume->name,
+            $resume->email
+        )->send();
+    }
+
+    private function getEducationById($id)
+    {
+        $educations = [
+            1 => 'Educação infantil',
+            2 => 'Ensino fundamental',
+            3 => 'Ensino médio',
+            4 => 'Graduação',
+            5 => 'Pós-graduação',
+            6 => 'Mestrado',
+            7 => 'Doutorado',
+        ];
+
+        return $educations[$id];
     }
 }

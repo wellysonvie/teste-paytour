@@ -31,7 +31,7 @@ class Resume extends DataLayer
         }
 
         if ($hasError) {
-            return false;
+            return null;
         }else {
             $this->name = trim($name);
             $this->email = trim($email);
@@ -41,9 +41,9 @@ class Resume extends DataLayer
             $this->observation = trim($observation);
             $this->file = $file;
             $this->ip = $_SERVER["REMOTE_ADDR"];
+            $this->save();
         }
 
-        //return $this->save();
-        return true;
+        return $this;
     }
 }
