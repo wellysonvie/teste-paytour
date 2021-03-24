@@ -1,0 +1,24 @@
+{
+    "name": "wellyson/teste-paytour",
+    "description": "Teste pratico para vaga de desenvolvedor full stack na Paytour",
+    "type": "project",
+    "authors": [
+        {
+            "name": "wellysonvie",
+            "email": "wellysonvie@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Source\\": "source/"
+        },
+        "files": [
+            "source/config.php"
+        ]
+    },
+    "require": {
+        "coffeecode/router": "^1.0",
+        "coffeecode/datalayer": "^1.1",
+        "phpmailer/phpmailer": "^6.3"
+    }
+}
