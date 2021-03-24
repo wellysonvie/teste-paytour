@@ -1,6 +1,6 @@
 <?php
 
-define("DEBUG", false);
+define("DEBUG", true);
 
 define("BASE_URL", "https://localhost/teste-paytour");
 
@@ -68,4 +68,19 @@ function alert($msg, $type = 'info')
 {
     $_SESSION['msg'] = $msg;
     $_SESSION['status'] = $type;
+}
+
+function showAlerts()
+{
+    if (!empty($_SESSION['status'])) {
+
+        echo "<div class='alert alert-{$_SESSION['status']} alert-dismissible fade show' role='alert'>
+                <strong>{$_SESSION['msg']}</strong>
+                <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+                    <span aria-hidden='true'>&times;</span>
+                </button>
+            </div>";
+
+        unset($_SESSION['status']);
+    }
 }
