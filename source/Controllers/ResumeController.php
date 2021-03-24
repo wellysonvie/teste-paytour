@@ -36,8 +36,6 @@ class ResumeController
             if (isset($resume)) {
                 alert('Seu currículo foi enviado com sucesso!', 'success');
                 $this->sendEmail($resume);
-            } else {
-                alert('Erro ao enviar seus dados!', 'danger');
             }
         }
 
