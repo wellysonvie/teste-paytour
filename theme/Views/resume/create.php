@@ -30,13 +30,13 @@
                 </div>
                 <div class="form-row">
                     <div class="form-group col-md-6">
-                        <label for="role">Cargo</label>
+                        <label for="role">Cargo desejado</label>
                         <input type="text" class="form-control" id="role" name="role" required />
                     </div>
                     <div class="form-group col-md-6">
                         <label for="education">Seu nível de escolaridade</label>
-                        <select class="custom-select">
-                            <option selected>Selecione uma opção</option>
+                        <select class="custom-select" id="education" name="education" required>
+                            <option value="" selected>Selecione uma opção</option>
                             <option value="1">Educação infantil</option>
                             <option value="2">Ensino fundamental</option>
                             <option value="3">Ensino médio</option>
@@ -49,11 +49,11 @@
                 </div>
                 <div class="form-group">
                     <label for="observation" class="required">Observações</label>
-                    <textarea class="form-control" id="observation" name="observation" rows="3" required /></textarea>
+                    <textarea class="form-control" id="observation" name="observation" rows="3" /></textarea>
                 </div>
 
                 <div class="form-group mt-5">
-                    <input type="file" name="resumeFile" id="resumeFile" accept=".doc,.docx,.pdf">
+                    <input type="file" name="resumeFile" id="resumeFile" accept=".doc,.docx,.pdf" required />
                 </div>
 
                 <div class="mt-5 mb-5">

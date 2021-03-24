@@ -1,5 +1,7 @@
 <?php
 
+session_start();
+
 define("DEBUG", true);
 
 define("BASE_URL", "https://localhost/teste-paytour");
