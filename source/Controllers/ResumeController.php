@@ -4,7 +4,6 @@ namespace Source\Controllers;
 
 use CoffeeCode\Uploader\File;
 use Exception;
-use Source\App\EmailController;
 use Source\Models\Resume;
 
 class ResumeController
