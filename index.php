@@ -18,10 +18,4 @@ $router->group(null);
 $router->get("/", "ResumeController:create");
 $router->post("/store", "ResumeController:store");
 
-/**
- * Resumes
- */
-$router->group('resumes');
-
-
 $router->dispatch();
