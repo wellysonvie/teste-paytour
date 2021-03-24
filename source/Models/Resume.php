@@ -11,7 +11,7 @@ class Resume extends DataLayer
         parent::__construct("resumes", []);
     }
 
-    public function add($name, $email, $phone, $role, $education, $observation, $file): bool
+    public function add($name, $email, $phone, $role, $education, $observation, $file): Resume
     {
         $hasError = false;
 
